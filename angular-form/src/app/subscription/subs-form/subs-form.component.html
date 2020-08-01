@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="form-group">
+      <h1>Create a subscription</h1>
+      <form (ngSubmit)="save(subscriptionForm.value)" #subscriptionForm="ngForm">
+        <div class="row">
+          <div class="form-group col-xs-3">
+            <label for="name">Amount</label>
+            <input type="number" class="form-control" id="amount"
+                   required
+                   [(ngModel)]="model.amount" name="amount"
+                   #name="ngModel">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-xs-2">
+            <label for="subscriptionType">Subscription Type</label>
+            <select class="form-control" id="subscriptionType"
+                   required 
+                   [(ngModel)]="model.subscriptionType" name="subscriptionType"
+                   #subscriptionType="ngModel">
+                <option *ngFor="let type of transactionTypeSelectMap | keyvalue" [value]="type.key">{{type.value}}</option>
+              </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-xs-2">
+            <label for="name">Subscription Start Date</label>
+            <input type="date" class="form-control" id="subscriptionStartDate"
+                    required
+                    [(ngModel)]="model.subscriptionStartDate" name="subscriptionStartDate"
+                    #name="ngModel">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-xs-2">
+            <label for="name">Subscription End Date</label>
+            <input type="date" class="form-control" id="subscriptionEndDate"
+                    required
+                    [(ngModel)]="model.subscriptionEndDate" name="subscriptionEndDate"
+                    #name="ngModel">
+          </div>
+        </div>
+
+          
+        <button type="submit" class="btn btn-success" [disabled]="!subscriptionForm.valid">Create</button>
+      </form>
+    </div>
+  
+    <div [hidden]="!submitted">
+      <br>
+      <h4>You had submitted the following subscription:</h4>
+      <div class="row">
+        <div class="col-xs-3">Amount:</div>
+        <div class="col-xs-9">{{ model.amount }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Subscription Type:</div>
+        <div class="col-xs-9">{{ transactionTypeSelectMap[model.subscriptionType] }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Subscription Start Date:</div>
+        <div class="col-xs-9">{{ model.subscriptionStartDate }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Subscription End Date:</div>
+        <div class="col-xs-9">{{ model.subscriptionEndDate }}</div>
+      </div>
+      <br>
+      <h4>Creation Status:</h4>
+      <div class="row">
+        <div class="col-xs-3">Subscription ID:</div>
+        <div class="col-xs-9">{{ finalResult.id }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Subscription Type:</div>
+        <div class="col-xs-9">{{ transactionTypeSelectMap[model.subscriptionType] }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Invoice Dates:</div>
+        <div class="col-xs-9">{{ finalResult.invoiceDateRecord }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Creation Status:</div>
+        <div class="col-xs-9" *ngIf="!finalResult.remarks">{{ finalResult.creationStatus }}</div>
+        <div class="col-xs-9" *ngIf="finalResult.remarks">{{ finalResult.creationStatus }}. Reason: {{finalResult.remarks}}</div>
+      </div>
+      <br>
+    </div>
+  </div>
