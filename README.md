@@ -26,3 +26,6 @@ Params: No need
 How to start angular:
 Open Node.js cmd, cd to angular project folder, then enter ng serve --open
 Then go into the link that provided in the console and input form data.
+
+
+PS: Uploaded rar file to fix some file missing issue.
