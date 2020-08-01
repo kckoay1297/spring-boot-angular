@@ -37,11 +37,11 @@ public class SubscriptionEntity {
 	private String subscriptionType;
 	
 	@Column(name = "subscription_start_date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date subscriptionStartDate;
 	
 	@Column(name = "subscription_end_date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date subscriptionEndDate;
 	
 	@Column(name = "invoice_date_record")
